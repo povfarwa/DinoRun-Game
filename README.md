@@ -3,9 +3,10 @@
 Hi! I am **Farwa Zafar**, a 15-year-old student from Pakistan. I love building web projects and exploring new technologies.
 
 ## 🕹️ About the Project
-![Game Inspation](./images/dino.gif)
 
 This is a very fun and interactive game that I built using **HTML, CSS, and JavaScript**. It is inspired by the famous Google Chrome Dinosaur game (the one we play when the internet is offline).
+
+![Game Inspation](./images/dino.gif)
 
 In this game, there is a dinosaur that runs constantly. Your goal is to save the dinosaur from obstacles like **cacti (plants)** and **flying birds**.
 
