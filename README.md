@@ -1,6 +1,6 @@
 # Dino Vision Runner 🦖
 
-Hi! I am **Farwa Zafar**, a 15-year-old student from Pakistan. I love building web projects and exploring new technologies.
+Hi! I am **Farwa Zafar**, a 14-year-old student from Pakistan. I love building web projects and exploring new technologies.
 
 ## 🕹️ About the Project
 
