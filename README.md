@@ -5,6 +5,7 @@ Hi! I am **Farwa Zafar**, a 14-year-old student from Pakistan. I love building w
 ## 🕹️ About the Project
 
 This is a very fun and interactive game that I built using **HTML, CSS, and JavaScript**. It is inspired by the famous Google Chrome Dinosaur game (the one we play when the internet is offline).
+##My Inspiration:-
 
 ![Game Inspation](./images/dino.gif)
 
