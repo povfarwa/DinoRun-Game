@@ -6,6 +6,42 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div id="wrapper">
+        <canvas id="gameCanvas" width="900" height="420"></canvas>
+        <div id="scanlines"></div>
+        <div class="corner c-tl"></div>
+        <div class="corner c-tr"></div>
+        <div class="corner c-bl"></div>
+        <div class="corner c-br"></div>
+
+        <div id="hud">
+            <div id="speedBar">SPD x<span id="spdVal">1.0</span></div>
+            <div class="block">
+                <div class="label">HI-SCORE</div>
+                <div class="val" id="hiScoreEl">00000</div>
+            </div>
+            <div class="block">
+                <div class="label">SCORE</div>
+                <div class="val" id="scoreEl">00000</div>
+            </div>
+
+            <div id="overlay">
+                <div class="overlay-title">DINO RUNNER</div>
+                <div class="overlay-sub">
+                    SPACE / TOUCH - jump (double-jump supported)<br>
+                    PHYSICAL JUMP - webcam gesture detection
+                </div>
+                <button class="btn" id="mainBtn">[ START ]</button>
+                <div class="overlay-sub" style="margin-top:8px; color:#333;" id="camMsg"></div>
+            </div>
+
+            <div id="canWrap">
+                <video id="camFeed" autoplay muted playsinline></video>
+                <div id="camStatus">CAM: OFF</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
 </body>
 </html>
