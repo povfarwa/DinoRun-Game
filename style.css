@@ -47,3 +47,117 @@ canvas{
     pointer-events: none;
     z-index: 10;
 }
+
+#hud .label{
+    color: #444;
+    font-size: 8px;
+    margin-bottom: 2px;
+}
+
+#hud .val{
+    color: #fff;
+    font-size: 11px;
+    letter-spacing: 5px;
+}
+
+#hud .block{
+    text-align: right;
+}
+
+#speedBar{
+    color: #555;
+    font-size: 8px;
+    padding: 4px 8px;
+    border: 2px solid #222;
+}
+
+#ovrlay{
+    postion: absolute;
+    inset: 0;
+    background: rgb(0, 0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-centent: center;
+    z-index: 20;
+    gap: 10px;
+}
+
+#overlay.hidden{
+    display: none;
+}
+
+.overlay-sub{
+    font-size: 7px;
+    color: #666;
+    letter-spacing: 1.8;
+    text-align: center;
+}
+
+.overlay-hiscore{
+    font-size: 8px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.btn{
+    margin-top: 8px;
+    background: tarnsparent;
+    color: #fff;
+    border: 1px solid #fff;
+    font_family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    padding: 10px;
+    letter-spacing: 2px;
+    transition: background 0.15s;
+}
+
+.btn::hover{
+    background: rbba(225, 255, 255, 0.08);
+}
+
+#cramWrapp{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 15;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#camStatus{
+    font-family: 'Press start 2P', monoSpace;
+    font-size: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 3px 5px;
+}
+
+.scanlines{
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+    background-color: repeating-linear-gradient(
+        to bottom;
+        transparent: 0px,
+        transparent: 3px,
+        rgba(0, 0, 0, 0.07) 3px;
+        rgba(0, 0, 0, 0.07) 8px,
+    );
+}
+
+.corner {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-color: #444;
+    border-style: solid;
+    pointer-events: none;
+    z-index: 4px;
+}
+
+.c-tl { top: -2px; ;eft: -2px; border: 2px 0 0 2px, };
+.ctr {top: -2; right: -2px; border: 2px, 2px 0 0, };
+.c-bl{ bottom: -2px; left: -2px; border-width: 0 0 2px 2px};
+.c-br{ bottom: -2; ight: -2px; border: 0 2px 2px 0,};
