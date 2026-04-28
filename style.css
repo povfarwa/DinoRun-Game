@@ -72,13 +72,13 @@ canvas{
 }
 
 #ovrlay{
-    postion: absolute;
+    position: absolute;
     inset: 0;
-    background: rgb(0, 0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-centent: center;
+    justify-content: center;
     z-index: 20;
     gap: 10px;
 }
@@ -105,15 +105,15 @@ canvas{
     background: tarnsparent;
     color: #fff;
     border: 1px solid #fff;
-    font_family: 'Press Start 2P', monospace;
+    font-family: 'Press Start 2P', monospace;
     font-size: 9px;
     padding: 10px;
     letter-spacing: 2px;
     transition: background 0.15s;
 }
 
-.btn::hover{
-    background: rbba(225, 255, 255, 0.08);
+.btn:hover{
+    background: rgba(225, 255, 255, 0.08);
 }
 
 #cramWrapp{
@@ -139,11 +139,11 @@ canvas{
     pointer-events: none;
     z-index: 5;
     background-color: repeating-linear-gradient(
-        to bottom;
-        transparent: 0px,
-        transparent: 3px,
-        rgba(0, 0, 0, 0.07) 3px;
-        rgba(0, 0, 0, 0.07) 8px,
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(0, 0, 0, 0.07) 3px,
+        rgba(0, 0, 0, 0.07) 8px
     );
 }
 
@@ -157,7 +157,7 @@ canvas{
     z-index: 4px;
 }
 
-.c-tl { top: -2px; ;eft: -2px; border: 2px 0 0 2px, };
-.ctr {top: -2; right: -2px; border: 2px, 2px 0 0, };
-.c-bl{ bottom: -2px; left: -2px; border-width: 0 0 2px 2px};
-.c-br{ bottom: -2; ight: -2px; border: 0 2px 2px 0,};
+.c-tl { top: -2px; left: -2px; border-width: 2px 0 0 2px; }
+.c-tr {top: -2px; right: -2px; border-width: 2px 2px 0 0; }
+.c-bl{ bottom: -2px; left: -2px; border-width: 0 0 2px 2px; }
+.c-br{ bottom: -2px; right: -2px; border-width: 0 2px 2px 0; }

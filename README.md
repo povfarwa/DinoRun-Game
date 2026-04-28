@@ -1,6 +1,6 @@
 # Dino Vision Runner 🦖
 
-Hi! I am **Farwa Zafar**, a 14-year-old student from Pakistan. I love building web projects and exploring new technologies.
+Hi!! I am **Farwa Zafar**, a 14-year-old student from Pakistan and i am in 9 grade. I love building web projects and exploring new technologies.I also love engineering and IoT
 
 ## 🕹️ About the Project
 
@@ -9,7 +9,7 @@ This is a very fun and interactive game that I built using **HTML, CSS, and Java
 
 ![Game Inspation](./images/dino.gif)
 
-In this game, there is a dinosaur that runs constantly. Your goal is to save the dinosaur from obstacles like **cacti (plants)** and **flying birds**.
+In this game, there is a dinosaur that runs constantly. Your goal is to save the dinosaur from obstacles like **cacti (plants)** and **flying birds** you can play this by your camera when you jump in real life dinasour will jummp in the game and you can also control the game with keyboard if you dont want to on your camera also your live scores will be shown on the screen
 
 ### ✨ Key Features
 * **Dual Controls:** You can play using the **Spacebar** on your keyboard or use your **Camera**.
@@ -30,4 +30,4 @@ In this game, there is a dinosaur that runs constantly. Your goal is to save the
 4. Avoid the cacti and birds to keep your score going!
 
 ---
-*Made with ❤️ by Farwa Zafar*
+*Made with ❤️ by Farwa Zafar 𐔌՞꜆.  ̫.꜀՞𐦯*
