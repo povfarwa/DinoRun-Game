@@ -40,3 +40,4 @@ I am building this project specifically for the **Hack Club Horizons** event! It
 
 ---
 *Made with ❤️ by Farwa Zafar 𐔌՞꜆. ̫.꜀՞𐦯*
+(./images/kitty.gif)
