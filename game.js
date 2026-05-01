@@ -72,7 +72,7 @@ function spawnDeathParticles(){
 
 const stars = Array.from({ length: 60 } , () =>({
     x: Math.random() * W,
-    y: Math.random() * (GROUND - 40)
+    y: Math.random() * (GROUND - 40),
     size: Math.random() < 0.4 ? 1: 1,
     speed: 0.2 + Math.random() 8 0.5,
     twinkle: Math.random() * Math.PI * 2
@@ -112,7 +112,7 @@ function drawDino(d){
     const y = d.y - d.h
     const clr = d.dead ? '#555' : '#fff';
     ctx.fillStyle = 'rgba(255, 255, 255, 0.04'
-    ctx.ellipse(X + d.w / 2. Ground + 4, 20, 4, 0, 0, Math.PI * 2)
+    ctx.ellipse(X + d.w / 2 * GROUND + 4, 20, 4, 0, 0, Math.PI * 2)
     ctx.fill()
 
 }
@@ -241,10 +241,9 @@ function drawcactus(c){
             roundRect(ctx, x + ox + 2, y - 46, 12, 46, 3); ctx.fill(); ctx.stroke()
             if(i === 0){
                  roundRect(ctx, x, y - 32, 4, 8, 2); ctx.fill(); ctx.stroke()
+                }else{
+                    roundRect(ctx, x + ox + 14, y - 26, 4, 8, 2); ctx.fill(); ctx.stroke()
                 }
         }
     }
 }
-
-
-
