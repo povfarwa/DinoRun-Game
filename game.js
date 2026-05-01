@@ -1,3 +1,5 @@
+const { json } = require("express")
+
 const canvas = document.getElementById('gamecanvas')
 const ctx = canvas.getContext('2d')
     const W = conwas.width
@@ -74,7 +76,7 @@ const stars = Array.from({ length: 60 } , () =>({
     x: Math.random() * W,
     y: Math.random() * (GROUND - 40),
     size: Math.random() < 0.4 ? 1: 1,
-    speed: 0.2 + Math.random() 8 0.5,
+    speed: 0.2 + Math.random() * 0.5,
     twinkle: Math.random() * Math.PI * 2
 }))
 
@@ -242,8 +244,104 @@ function drawcactus(c){
             if(i === 0){
                  roundRect(ctx, x, y - 32, 4, 8, 2); ctx.fill(); ctx.stroke()
                 }else{
-                    roundRect(ctx, x + ox + 14, y - 26, 4, 8, 2); ctx.fill(); ctx.stroke()
+                    roundRect(ctx, x + ox + 14, y - 26, 4, 8, 2); ctx.fill(); ctx.stroke(); text.stroke()
                 }
+
+                ctx.linewidth = 1
+                drawSpkie(x + 8, y - 47, 0);
+                drawSpike(x + 28, y - 47, 0)
+
         }
+    }else{
+        const heights = [ 44, 38, 50]
+        const offsets = [0, 18, 36]
+        for(let i = 0; i < 3; i++){
+            roundRect(ctx, x + offsets[i], y - heights[i], 12, height[i], 3)
+            ctx.fill(); ctx.stroke()
+        }
+        ctx.lineWidth = 1
+        heights.forEach((h, i) => drawSpike(x + offsets[i] + 6, y - h - 1, 0))
     }
+}
+
+function drawSpike(x, y, dir){
+    ctx.strokeStyle = '#fff';
+    ctx.linewidth =1
+    ctx.beginPath()
+    ctx.moveTo(x + dir * 2, y)
+    ctx.lineTo(x + dir * 2, y - 8)
+    ctx.stroke()
+}
+
+function drawBird(b){
+    ctx.save();
+    ctx.strokeStyle = '#fff'
+    ctx.fillStyle = '#000'
+    ctx.lineWidth = 1.8
+    const x = b.x;
+    const y = b.y
+    const up = b.wingFrame < 8
+    ctx.beginPath()
+    ctx.ellipse(x + 16, y+ 8, 12, 6, -0.1, 0, Math.PI * 2)
+    ctx.fill(); ctx.stroke()
+    roundRect(ctx, x+ 22, y + 2, 10, 10, 4)
+    ctx.fill(); ctx.stroke()
+    ctx.beginPath()
+    ctx.moveTo(x + 32, y + 4)
+    ctx.lineTo(x + 48, y + 6)
+    ctx.lineTo(x + 48, y + 9)
+    ctx.lineTo(x + 32, y + 10)
+    ctx.closePath()
+    ctx.fill(); ctx.stroke()
+
+    ctx.fillStyle= '#fff'
+    ctx.beginPath(); ctx.arc(x + 28, y + 5, 2.5 , 0, Math.PI * 2); ctx.fill()
+    ctx.fillStyle = '#000'
+    ctx.beginPath(); ctx.arc(x + 28, y + 5, 1.2, 0, Math.PI * 2); ctx.fill()
+    ctx.fillStyle = '#fff'
+    ctx.beginPath(); ctx.arc(x + 29, y + 4, 0.6, 0, Math.PI * 2); ctx.fill()
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5; ctx.fillStyle = '#000'
+    ctx.beginPath()
+    ctx.moveTo(x + 24, y + 2)
+    ctx.lineTo(x + 26, y - 5)
+    ctx.lineTo(x + 30, y + 2)
+    ctx.closePath()
+    ctx.fill(); ctx.stroke()
+    ctx.lineWidth = 1.8; ctx.fillStyle = '#000'
+
+    if(up){
+        ctx.beginPath()
+        ctx.moveTo(x + 8, y + 5)
+        ctx.quadraticCurveTo(x - 4, y - 16, x - 18, y - 12)
+        ctx.quadraticCurveTo(x - 8, y - 2, x + 4, y + 4)
+        ctx.closePath(); ctx.fill(); ctx.stroke()
+        ctx.beginPath()
+        ctx.moveTo(x + 20, y + 4)
+        ctx.quadraticcurveTo(x + 20, y - 14, x + 44, y - 10)
+        ctx.quadraticCurveTo(x + 34, y,      x + 24, y + 4)
+        ctx.closePath(); ctx.fill(); ctx.stroke()
+    }else{
+        ctx.beginPath()
+        ctx.moveTo(x + 8, y + 10)
+        ctx.quadraticCurveTo(x -6, y + 22, x - 18, y + 18)
+        ctx.quadraticCurveTo(x - 8, y + 10, x + 4, y + 8)
+        ctx.closePath(); ctx.fill(); ctx.stroke()
+
+        ctx.beginPath()
+        ctx.moveTo(x + 20, y + 10)
+        ctx.quadraticCurveTo(x + 32, y + 22, x + 44, y + 18)
+        ctx.quadraticCurveTo(x + 34, y + 10, x + 24, y + 10)
+        ctx.closePath(); ctx.fill(); ctx.stroke()
+
+    }
+
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.2
+    ctx.beginPath(); ctx.moveTo(x + 12, y + 14); ctx.lineTo(x + 10, y + 20); ctx.stroke()
+    ctx.beginPath(); ctx.moveTo(x + 10, y + 20); ctx.lineTo(x + 7, y + 22)
+                     ctx.moveTo(x + 10, y + 20); ctx.lineTo(x + 13, y + 22); ctx.stroke()
+    ctx.beginPath(); ctx.moveTo(x + 20, y + 14); ctx.lineTo(x + 18, y + 20); ctx.stroke()
+    ctx.beginPath(); ctx.moveTo(x + 18, y + 20); ctx.lineTo(x + 15, y + 22)
+                     ctx.moveTo(x + 18, y + 20); ctz.lineTo(x + 21, y + 22); ctx.stroke()
+     
+    ctx.restore()                 
 }
