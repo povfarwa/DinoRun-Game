@@ -162,3 +162,89 @@ if(!d.dead){
     ctx.beginPath(); ctx.moveTo(X + 19, Y + 3); ctx.lineTo(X + 29, Y + 12); ctx.stroke()
     ctx.beginPath(); ctx.moveTo(X + 29, Y + 3); ctx.lineTo(X + 19, Y + 12); ctx.stroke();
 }
+
+
+ctx.strokeStyle = clr; ctx.lineWidth = 1.5; ctx.fillStyle = '#000'
+for(let i = 0; i < 3; i++){
+    const sx = X + 16 + i * 8;
+    ctx.beginPath()
+    ctx.moveTo(sx, Y - 2)
+    ctx.lineTo(sx + 4, Y - 9 - i * 2)
+    ctx.lineTo(sx + 8, Y - 2)
+    ctx.closePath()
+    ctx.fill(); ctx.stroke();
+}
+
+ctx.strokeStyle = clr; ctx.lineWidth = 2; ctx.fillStyle = '#000'
+roundRect(ctx, X + 28, Y + 28, 10, 7, 3)
+ctx.fill(); ctx.stroke();
+
+ctx.strokeStyle = clr; ctx.lineWidth = 3;
+const lf = d.legFrame;
+
+
+if(d.jumping){
+    ctx.fillStyle = '#000'
+    roundRect(ctx, X + 8, Y + 46, 11, 12, 4); ctx.fill(); ctx.stroke();
+    roundRect(ctx, X + 22, Y + 46, 11, 12, 4); ctx.fill(); ctx.stroke()
+    ctx.lineWidth = 2;
+    roundRect(ctx, X + 4, Y + 54, 14, 5, 2); ctx.fill(); ctx.stroke()
+    roundRect(ctx, X + 4, Y + 54, 14, 5, 2); ctx.fill(); ctx.stroke()
+}else{
+    const a = lf < 8;
+    ctx.fillStyle = '#000'
+}
+
+if (a){
+    roundRect(ctx, X + 8, Y + 44, 11, 16, 4); ctx.fill(); ctx.stroke();
+    ctx.linewidth = 2;
+    roundRect(ctx, X + 8, Y + 44, 11, 10, 4); ctx.fill(); ctx.stroke()
+}else{
+    roundRect(ctx, X + 8, Y + 44, 11, 10, 4); ctx.fill(); ctx.stroke()
+    ctx.lineWidth = 2
+    roundRect(ctx, X + 4, Y + 50, 18, 5, 2); ctx.fill(); ctx.storke()
+}
+ctx.lineWidth = 3
+
+
+if(!a){
+    roundRect(ctx, X + 22, Y + 44, 11, 16, 4); ctx.fill(); ctx.stroke();
+    ctx.lineWidth = 2;
+    roundRect(ctx, X + 20, Y + 44, 11, 10, 4); ctx.fill(); ctx.stroke()
+}else{
+    roundRect(ctx, X + 22, Y + 44, 11, 10, 4); ctx.fill(); ctx.stroke()
+    ctx.lineWidth = 2
+    roundRect(ctx, X + 20, Y + 50, 18, 5, 2); ctx.fill(); ctx.stroke()
+}
+ctx.restore()
+
+
+function drawcactus(c){
+    ctx.strokeStyle = '#fff'
+    ctx.lineWidth = 2;
+    ctx.fillStyle = '#000';
+
+    const x = c.x
+    const y = GROUND
+
+    if(c.type === 0){
+        roundRect(ctx, x + 8, y - 54, 12, 54, 3); ctx.fill(); ctx.stroke()
+        roundRect(ctx, x,     y - 40, 8, 8, 2); ctx.fill(); ctx.stroke()
+        roundRect(ctx, x+ 20, y - 40, 8, 14, 2); ctx.fill(); ctx.stroke();
+        ctx.lineWidth = 1
+        drawSpike(x + 14, y - 55, 0)
+        drawSprike(x + 0, y - 50, -1)
+        drawSprike(x + 28, y - 42, 1)
+    }else if(c.type === 1){
+        for ( let i = 0; i < 2; i++){
+            const ox = i * 20
+            roundRect(ctx, x + ox + 2, y - 46, 12, 46, 3); ctx.fill(); ctx.stroke()
+            if(i === 0){
+                 roundRect(ctx, x, y - 32, 4, 8, 2); ctx.fill(); ctx.stroke()
+                }
+        }
+    }
+}
+
+
+
