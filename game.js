@@ -345,3 +345,122 @@ function drawBird(b){
      
     ctx.restore()                 
 }
+
+function drawBackground(){
+    ctx.fillStyle =  '#000'
+    ctx.fillRect(0, 0, W, H)
+    const t = datenow() / 100
+    stars.forEach(s => {
+        const brightness = 0.3 + 0.4 * Math.sin(t * 0.8 + s.twinkle)
+        ctx.fillStyle = `rgba(255, 255, 255, ${brightness})`
+        ctx.fillRect(Math.fkloor(s.x), Math.floor(s.y), s.size, s.size)
+        s.x -= s.speed * speedMult * 0.3;
+        if(s.x < 0) s.x = W
+    })
+}
+
+ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)'
+ctx.fillStyle = '#000'
+ctx.lineWidth = 1.5
+ctx.beginPath(); ctx.arc(820, 40, 22, 0, Math.PI * 2); ctx.fill(); ctx.stroke()
+ctx.beginPath(); ctx.arc(828, 36, 18, 0, Math.PI * 2); ctx.fill()
+ctx.strokeStyle = '#fff'; ctx.lineWidth = 2
+ctx.beginPath(); ctx.moveTo(0, GROUND); ctx.lineTo(W, GROUND); ctx.stroke()
+const spd = BASE_SPEED * speedMult;
+ctx.strokestyle = '#2a2a2a'; ctx.lineWidth = 1
+pebbles.forEach(p => {
+    p.x -= spd * 0.5
+    if(p.x + p.w < 0) p.x = W + p.w
+    ctx.beginPath(); ctx.moveTo(p.x, GROUND + 8); ctx.lineTo(p.x + p.w, GROUND + 8); ctx.stroke()
+})
+
+ctx.strokeStyle = '#1a1a1a'; ctx.lineWidth = 1
+for(let i = 0; i < 6; i++){
+    const mx = ((i * 180 - frameCount * spd * 0.08) % (W + 200)) - 100
+    const mh = 40 + (i % 3) * 20
+    ctx.beginPath(); ctx.moveTo(mx, GROUND); ctx.lineTo(mx + 70, GROUND - mh); ctx.lineTo(mx + 140, GROUND); ctx.stroke()
+}
+
+function collides(ax, ay, aw, ah, bx, by, bw, bh){
+    return ax < bx + bw && ax + aw > bx && ay < by + bh && ah > by
+}
+
+function checkCollisions(){
+    const pad = 8;
+    const dx = dino.x + pad, dy = dino.y - dino.h + pad
+    const dw = dino.w - pad * 2, dh = dino.h - pad * 2
+
+    for(const c of obstacles){
+        if(collides(dx, dy, dw, dh, c.x + 6, GROUND - 54, 32, 54)) return true
+    }
+    for(const b of birds){
+        if(collides(dx, dy, dw, dh, b.x + 6, b.y, 38, 18)) return true
+    }
+    return false
+}
+
+function jump(){
+    if(state !== 'playing') return
+    if(dino.jumpsLeft > 0){
+        dino.vy = dino.jumpsLeft === 2 ? JUMP_V : DJUMP_V
+        dino.jumping = true
+        dino.jumpsLeft--;
+        dino.squishX = 0.8
+        dino.squishY = 1.3
+        spawnDust(dino.x + 10, GROUND)
+    }
+}
+
+function update(){
+    if(state !== 'playing') return
+    frameCount++
+    speedMult = 1 + score / 1200
+    const spd = BASE_SPEED * speedMult
+    document.getElementById('spdVal').textContent = speedMult.toFixed(1)
+    score += 0.12 * speedMult
+    const scoreInt = Math.floor(score)
+    document.getElementById('scoreEl').textContent = fmt(scoreInt)
+    if(score > hiScore){
+        hiScore = score
+        document.getElementById('hiScoreEl').textContent = fmt(Math.floor(hiScore))
+    }
+}
+
+if(scoreInt > 0 && scoreInt % 100 === 0 && frameCount % 2 === 0){
+    spawnPopup('x' + scoreInt / 100 + '00', W / 2, 60)
+}
+
+if(dino.jumping || dino.vy !== 0){
+    dino.vy += GRAVITY
+    dino.y += dino.vy
+    if(dino.y >= GROUND){
+        dino.y = GROUND
+        dino.jumping = false
+        dino.vy = 0
+        dino.jumpsLeft = 2
+        dino.squishX = 1.3
+        dino.squishY = 0.75
+    }else{
+        dino.legFrame = (dino.legFrame + 1) % 16
+        if(frameCount % 5 === 0) spawnDust(dino.x + 10, GROUND)
+    }
+}
+
+dino.squishX += (1 - dino.squishX) * 0.2
+dino.squishY += (1 - dinoSquishY) * 0.2
+
+dino.blinkTimer++
+if(dino.blinkTimer > 120 + Math.random()* 80){
+    dino.eyeOpen = false
+    if(dino.blinkTimer > 128){
+        dino.eyeOpen = true
+        dino.blinkTimer = 0
+    }
+}
+
+nextObsDist -= spd
+if(nextObstDist <= 0){
+    obstacles.push({ x:W + 30, type: Math.floor(Math.random() * 3)})
+    nextObsDist = 280 + Math.random() * 350 / speedMult
+}
+obstacles = obstacles.filter(c => { c.x -= spd; return c.x > -120})
