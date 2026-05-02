@@ -58,7 +58,7 @@ In this game, there is a dinosaur that runs constantly. Your goal is to save the
 * **Fitness Fun:** This game can be used as a jumping exercise to stay active while gaming.
 * **Live Score:** There is a score counter to track how far you have reached.
   
-### 🛠️ Tech Stack
+### Tech Stack
 * HTML5
 * CSS3
 * JavaScript (Logic & Camera Integration)
@@ -73,7 +73,7 @@ In this game, there is a dinosaur that runs constantly. Your goal is to save the
 ![My_Game](./images/game1.png)
 ![My_Game](./images/game2.png)
 
-## 🏔️ Hack Club Horizons
+## Hack Club Horizons
 I am building this project specifically for the **Hack Club Horizons** event! It has been an amazing experience exploring how to bridge the gap between physical movement and digital gameplay.
 
 ## 💖 Thank You
