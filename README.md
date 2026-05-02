@@ -75,6 +75,9 @@ I write 71 percent code by myself sometimes i got stuck up especially in JS code
 ## How I Started
 I faced many issues like in logic of JS and also the main probelem i faced was at the time i decided to make any project i really dont understand what to make on that day in the evening the electricity goes out and i was getting bored i picked up my laptop and started to playing dino runnig game on the internet (when we dont have internet) thats when i got the idea that i should make a game like this so thats when i decide wht should i use in it, which language and what should be functionalities
 
+## How much Time Does I spent On This Proejct?
+![time](./images/hour.png)
+
 ## Failure
 My biggest failure is that i am dont be able to make it respnsive so please view it through your laptop
 
