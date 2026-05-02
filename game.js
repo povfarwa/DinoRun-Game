@@ -464,3 +464,63 @@ if(nextObstDist <= 0){
     nextObsDist = 280 + Math.random() * 350 / speedMult
 }
 obstacles = obstacles.filter(c => { c.x -= spd; return c.x > -120})
+
+
+ // ── Birds ── (start appearing after score 200)
+  if (score > 200) {
+    nextBirdDist -= spd;
+    if (nextBirdDist <= 0) {
+      const yOpts = [GROUND - 80, GROUND - 115, GROUND - 155];
+      birds.push({
+        x: W + 30,
+        y: yOpts[Math.floor(Math.random() * yOpts.length)],
+        wingFrame: 0
+      });
+      nextBirdDist = 350 + Math.random() * 450 / speedMult;
+    }
+  }
+  birds = birds.filter(b => {
+    b.x -= spd * 0.88;
+    b.wingFrame = (b.wingFrame + 1) % 16;
+    return b.x > -100;
+  });
+
+  // ── Particles ──
+  particles = particles.filter(p => {
+    p.x += p.vx; p.y += p.vy; p.vy += 0.25; p.life--;
+    return p.life > 0;
+  });
+
+  // ── Popups ──
+  popups = popups.filter(p => { p.y -= 0.5; p.life--; return p.life > 0; });
+
+  // ── Collision check ──
+  if (checkCollisions()) gameOver();
+}
+
+// ─────────────────────────────────────────────
+//  DRAW (render all game objects each frame)
+// ─────────────────────────────────────────────
+function draw() {
+  drawBackground();
+
+  // Particles
+  particles.forEach(p => {
+    const a = p.life / p.maxLife;
+    ctx.fillStyle = `rgba(255,255,255,${a * 0.7})`;
+    ctx.beginPath(); ctx.arc(p.x, p.y, p.r * a, 0, Math.PI * 2); ctx.fill();
+  });
+
+  obstacles.forEach(drawCactus);
+  birds.forEach(drawBird);
+  drawDino(dino);
+
+	  // Score popups
+	  popups.forEach(p => {
+	    const a = p.life / p.maxLife;
+	    ctx.fillStyle = `rgba(255,255,255,${a})`;
+	    ctx.font = '12px "Press Start 2P", monospace';
+	    ctx.textAlign = 'center';
+	    ctx.fillText(p.text, p.x, p.y);});
+	  ctx.textAlign = 'left';
+	}
