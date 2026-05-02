@@ -75,14 +75,14 @@ I write 71 percent code by myself sometimes i got stuck up especially in JS code
 ## How I Started
 I faced many issues like in logic of JS and also the main probelem i faced was at the time i decided to make any project i really dont understand what to make on that day in the evening the electricity goes out and i was getting bored i picked up my laptop and started to playing dino runnig game on the internet (when we dont have internet) thats when i got the idea that i should make a game like this so thats when i decide wht should i use in it, which language and what should be functionalities
 
-##Failure
+## Failure
 My biggest failure is that i am dont be able to make it respnsive so please view it through your laptop
 
 ## My Game
 ![My_Game](./images/game1.png)
 ![My_Game](./images/game2.png)
 
-#You Can Paly It here:
+## You Can Paly It here:
 https://dino-run-game-gray.vercel.app/
 
 ## Hack Club Horizons
