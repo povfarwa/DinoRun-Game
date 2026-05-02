@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 * {
@@ -149,7 +150,7 @@ canvas {
   border: 1px solid #333;
   opacity: 0.6;
   display: none;
-  transform: scaleX(-1); /* mirror so it feels natural */
+  transform: scaleX(-1); 
 }
 
 #camStatus {
