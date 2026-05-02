@@ -85,6 +85,9 @@ My biggest failure is that i am dont be able to make it respnsive so please view
 ## You Can Paly It here:
 https://dino-run-game-gray.vercel.app/
 
+## How I Make it live?
+I make it live with the help of Vercel. Vercel helps you to make your ewbsite live then you can copy your link and if you send some that link they will also be able to view that
+
 ## Hack Club Horizons
 I am building this project specifically for the **Hack Club Horizons** event! It has been an amazing experience exploring how to bridge the gap between physical movement and digital gameplay.
 
