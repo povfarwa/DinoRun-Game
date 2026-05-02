@@ -70,7 +70,7 @@ In this game, there is a dinosaur that runs constantly. Your goal is to save the
 4. Avoid the cacti and birds to keep your score going!
 
 ## Use Of AI
-I write 71 percent code by myself sometimes i got stuck up especially in JS code and when i try to fix the problems then i used ai i used claud ai for my help but i write html and css almost completely by my self
+I write 71 percent code by myself sometimes i got stuck up especially in JS code and when i try to fix the problems i even messed up more i used claud AI for my help but i write html and css almost completely by my self
 
 ## My Game
 ![My_Game](./images/game1.png)
