@@ -466,7 +466,6 @@ if(nextObstDist <= 0){
 obstacles = obstacles.filter(c => { c.x -= spd; return c.x > -120})
 
 
- // ── Birds ── (start appearing after score 200)
   if (score > 200) {
     nextBirdDist -= spd;
     if (nextBirdDist <= 0) {
@@ -485,22 +484,15 @@ obstacles = obstacles.filter(c => { c.x -= spd; return c.x > -120})
     return b.x > -100;
   });
 
-  // ── Particles ──
   particles = particles.filter(p => {
     p.x += p.vx; p.y += p.vy; p.vy += 0.25; p.life--;
     return p.life > 0;
   });
 
-  // ── Popups ──
   popups = popups.filter(p => { p.y -= 0.5; p.life--; return p.life > 0; });
 
-  // ── Collision check ──
   if (checkCollisions()) gameOver();
-}
 
-// ─────────────────────────────────────────────
-//  DRAW (render all game objects each frame)
-// ─────────────────────────────────────────────
 function draw() {
   drawBackground();
 
@@ -515,7 +507,6 @@ function draw() {
   birds.forEach(drawBird);
   drawDino(dino);
 
-	  // Score popups
 	  popups.forEach(p => {
 	    const a = p.life / p.maxLife;
 	    ctx.fillStyle = `rgba(255,255,255,${a})`;
@@ -524,3 +515,175 @@ function draw() {
 	    ctx.fillText(p.text, p.x, p.y);});
 	  ctx.textAlign = 'left';
 	}
+
+    function startGame(){
+        score = 0;
+        frameCount = 0
+        speedMult = 1
+        obstacles = []
+        birds = []
+        particles = []
+        popups = []
+        nextObsDist = 120
+        nextBirdDist = 300
+
+        resetDino()
+        document.getElementById('overlay').classList.add('hidden')
+        cancelAnimationFrame(animId)
+        animId = requestAnimationFrame(gameLoop)
+    }
+
+    function gameOver(){
+        state = 'dead'
+        dino.dead = true;
+        spawnDeathParticles()
+        cancelAnimationFrame(animId)
+        draw()
+
+        setTimeout(()=>{
+            const ov = document.getElementById('overlay')
+            ov.innerHTML = `
+            <div class="overlay-title">GAME OVER</div>
+            <div class="overlay-score">SCORE: ${fmt(Math.floor(score))}</div>
+            <div class="overlay-hiscore>BEST: ${fmt(Math.floor(hiScore))}</div>
+            <button class="btn" onclick="startGame()">[ RETRY ]</button>
+            `
+            ov.classList.remove('hidden')
+        }, 600)
+    }
+
+    function gameLoop(){
+        update()
+        draw()
+        animId = requestAnimationFrame(gameLoop)
+    }
+
+    document.addEventListener('keydown', e => {
+        if(e.code === 'Space'){ e.preventDefault(); jump(); }
+    })
+    document.addEventListener('touchstart', e => { e.preventDefault(); jump();})
+    document.getElementById('mainBtn').addEventListener('click', startGame)
+
+    function fmt(n){
+        return String(n).padStart(5, '0')
+    }
+
+    resetDino()
+    (function idleLoop(){
+        if(state !== 'idle') return
+        drawBackground()
+        dino.logFrame = (dino.legFrame + 1) % 16
+        dino.blinkTimer++
+        if(dino.blinkTimer > 100){
+            dino.eyeOpen = false
+            if(dino.blinkTimer > 108){
+                dino.eyeOpen = true
+                dino.blinkTimer = 0
+            }
+        }
+        drawDino(dino)
+        requestAnimationFrame(idleLoop)
+    })()
+
+
+let prevHipY     = null;
+let hipHistory   = [];
+let jumpCooldown = 0;
+
+const JUMP_THRESHOLD = 0.028
+const CM_STATUS = document.getElementById('camStatus')
+
+async function initCamera(){
+    try{
+        const video = document.getElementById('camFeed')
+        const stream = await navigator.mediaDevices.getUserMedia({video: {width: 60, height: 120}})
+        video.srcObject = stream
+        video.style.display = 'block'
+        CAM_STATUS.textContent = 'CAM: LOADING...'
+        CAM_STATUS.style.color = '#666'
+
+        await loadScript('https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js')
+        await loadscript('https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js')
+        setupPose(video)
+    }catch(err){
+        CAM_STATUD.textContent = 'CAM: ' + (err.name === 'NotAllowedError' ? 'DENIED' : 'ERROR')
+        const msg = document.getElementById('camMsg')
+        if(msg) msg.textContent = '⟶ use SPACE to jump instead'
+    }
+}
+
+function loadScript(src){
+    return new Promise((resolve, reject)=> {
+        const s = document.createElement('script')
+        s.src = src
+        s.onload = resolve
+        s.onerror = reject
+        document.head.appendChild(s)
+    })
+}
+
+function setupPose(video){
+    if(typeof Pose === 'undefined'){
+        CAM_STATUS.textContent = 'CAM: POSE ERR'
+        return
+    }
+
+    const pose = newPose({
+        locateFile: f => `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${f}`
+    })
+
+    pose.setOptions({
+        modelComplexity: 0,
+        smoothLandmarks: false,
+        enableSegmentation: false,
+        minDetectionConfidence: false,
+        minTrackingConfidence: 0.4
+    })
+
+    pose.onResults(results => {
+        if(!results.poseLandMarks) return
+        const lh = results.poseLandMarks[23]
+        const rh = results.poseLandMarks[24]
+        const avgHipY = (lh.y + rh.y) / 2
+
+        hipHistory.push(avgHipY)
+        if(hipHistory.length > 3) hipHistory.shift()
+            const smoothHip = hipHistory.reduce((a, b)=> a + b, 0) / hipHistory.length
+
+        if(prevHipY !== null){
+            const delta = prevHipY - smoothHip
+            
+            if(jumpCooldown === 0 && delta > JUMP_THRESHOLD){
+                jump()
+                jumpCooldown = 12
+                CAM_STATUS.textContent = 'CAM: JUMP!'
+                CAM_STATUS.style.color = '#fff'
+                setTimeout(()=>{
+                    CAM_STATUS.textContent = 'CAM: TRACKING'
+                    CAM_STATUS.style.color = '#4f4'
+                }, 200)
+            }
+        }
+
+        if(jumpCooldown > 0) jumpCooldown--
+        prevHipY = smoothHip
+    })
+
+    if(typeof Camera !== 'undefined'){
+        const cam = new Camera(video, {
+            onFrame: async () => pose.send({ image: video }),
+            width: 160, height: 120
+        })
+        cam.start()
+    }else{
+        const poseloop = async () =>{
+            if(video.readyState >= 2) await pose.send({ imahe: video })
+                requestAnimationFrame(poseLoop)
+        }
+        poseLoop()
+    }
+    CAM_STATUS.textContent = 'CAM: TRACKING'
+    CAM_STATUS.style.color = '#4f4'
+}
+
+initCamera()
