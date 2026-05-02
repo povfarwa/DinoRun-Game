@@ -70,7 +70,10 @@ In this game, there is a dinosaur that runs constantly. Your goal is to save the
 4. Avoid the cacti and birds to keep your score going!
 
 ## Use Of AI
-I write 71 percent code by myself sometimes i got stuck up especially in JS code and when i try to fix the problems i even messed up more i used claud AI for my help but i write html and css almost completely by my self
+I write 71 percent code by myself sometimes i got stuck up especially in JS code and when i try to fix the problems i even messed up more i used claud AI for my help but i write html and css almost completely by my self i really tried to use less ai as i can 
+
+## How I Started
+I faced many issues like in logic of JS and also the main probelem i faced was at the time i decided to make any project i really dont understand what to make on that day in the evening the electricity goes out and i was getting bored i picked up my laptop and started to playing dino runnig game on the internet (when we dont have internet) thats when i got the idea that i should make a game like this so thats when i decide wht should i use in it, which language and what should be functionalities
 
 ## My Game
 ![My_Game](./images/game1.png)
