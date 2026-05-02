@@ -71,6 +71,7 @@ In this game, there is a dinosaur that runs constantly. Your goal is to save the
 
 ## My Game
 ![My_Game](./images/game1.png)
+![My_Game](./images/game2.png)
 
 ## 🏔️ Hack Club Horizons
 I am building this project specifically for the **Hack Club Horizons** event! It has been an amazing experience exploring how to bridge the gap between physical movement and digital gameplay.
