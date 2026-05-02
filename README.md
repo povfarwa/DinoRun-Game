@@ -69,6 +69,9 @@ In this game, there is a dinosaur that runs constantly. Your goal is to save the
 3. Jump in real life to make the dinosaur jump, or simply press the **Space button** on your keyboard.
 4. Avoid the cacti and birds to keep your score going!
 
+## My Game
+![My_Game](./images/game1.png)
+
 ## 🏔️ Hack Club Horizons
 I am building this project specifically for the **Hack Club Horizons** event! It has been an amazing experience exploring how to bridge the gap between physical movement and digital gameplay.
 
