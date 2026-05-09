@@ -4,7 +4,7 @@ Hello!! I am Farwa Zafar i am 14-year-old from Pakistan and i am in 9 grade i lo
 
 ## About the Project
 
-This is a very fun and interactive game that I built using HTML, CSS, and JavaScript i got the game idea from the google chrome game when the internet is off and we are offline the game we often play a dinasour game who run constantly and also jump when danger things come like cactus plants and flying birds
+This is a very amazing and fun game that i have build using HTML, CSS, and JavaScript i got the game idea from the google chrome game when the internet is off and we are offline the game we often play a dinasour game who run constantly and also jump when danger things come like cactus plants and flying birds
 
 *My Inspiration:*
 
@@ -12,22 +12,22 @@ This is a very fun and interactive game that I built using HTML, CSS, and JavaSc
 
 In this game there is a dinosaur that runs constantly your goal is to save the dinosaur from obstacles like cactus (plants) and flying birds you can play this game using your camera when you jump in front of the camera the dinosaur will jump in the game!! you can also control the game with your keyboard space button if you dont want to turn on your camera your live scores will also be shown on the top of the game screen
 
-## Key Features
+## Features of My Game
 * **Two Controls:** You can play using the Spacebar on your keyboard or use your Camera
 * **Motion Control:** If you use the camera the dinosaur will jump when you physically jump in front of your camera
 * **Double Jump:** The dinosaur can jump twice in the air to avoid tricky obstacles especially the flying birds
 * **Fun Fact:** This game can be used as a jumping exercise to stay active while gaming
-* **Live Score:** Your scores will be displayed on the screen
+* **Live Score:** Your scores will displayed on the screen
   
-### languages(Tech Stacks) used to make this
+### languages used to make this
 * HTML
 * CSS
 * JavaScript
 
 ## How to Play
-1. Open the game in your browser.
+1. Open the game in your browser with the link 
 2. Allow camera access if you want to play with your actions such as jumping
-3. Jump in real life to make the dinosaur jump or simply press the Space button on your keyboard if you dont want to use camera.
+3. Jump in front of the camer to make the dinosaur jump or simply press the Space button on your keyboard if you dont want to use camera
 4. Avoid the cactus and flying birds to not getting out
 
 ## Use Of AI
@@ -53,11 +53,11 @@ https://dino-run-game-gray.vercel.app/
 I make it live with the help of Vercel. Vercel helps you to make your ewbsite live then you can copy your link and if you send some that link they will also be able to view that
 
 ## Hack Club Horizons
-I am building this project specifically for the Hack Club Horizons event it has been an amazing experience exploring how to bridge the gap between physical movement and digital gameplay.
+I am building this project specifically for the Hack Club Horizons event it is amazing
 
 ## 💖 Thank You
-* **Hack Club:** A huge thank you to Hack Club for making Horizons and giving chance to make something even if its software.
-* **Open Source Community:** Thanks for the tools that make building with camera vision possible for student developers.
+* **Hack Club:** A huge thank you to Hack Club for making Horizons and giving chance to make something hardware or even if its software.
+* **Open Source Community:** Thanks for the tools that make building and help with camera vision possible for developers.
 
 ---
 *Made with ❤️ by Farwa Zafar 𐔌՞꜆. ̫.꜀՞𐦯*
